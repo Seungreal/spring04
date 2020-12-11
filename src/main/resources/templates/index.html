@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Home</h1>
+    <a href="#" id="add">행사정보 추가하기</a><br>
+    <a href="#" id="crawling">크롤링하기</a><br>
+    <a href="#" id="list">행사목록</a>
+    <script>
+        $('#add').click(e=>{location.href='/forms/festival/add'})
+        $('#list').click(e=>{location.href='/forms/festival/list'})
+        $('#crawling').click(e=>{
+            $.getJSON('/festival/crawling/koreatriptips',d=>{})
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table tr td{border: 1px solid black;}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>행사정보 추가하기</h1>
+    <table>
+        <tr>
+            <td>이름</td>
+            <td><input id="title" type="text"></td>
+        </tr>
+        <tr>
+            <td>시작일</td>
+            <td><input id="openDate" type="text"></td>
+        </tr>
+        <tr>
+            <td>주소</td>
+            <td><input id="address" type="text"></td>
+        </tr>
+        <tr>
+            <td>전화번호</td>
+            <td><input id="phoneNumber" type="text"></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td><textarea id="content" cols="30" rows="10"></textarea></td>
+        </tr>
+    </table>
+    <button id="add-btn">추가하기</button>
+    <script>
+        $('#add-btn').click(e=>{
+            e.preventDefault()
+            $.ajax({
+                url:'/festival',
+                type:'POST',
+                data:JSON.stringify({
+                    //jQuery로 수정
+                    title:document.getElementById('title').value,
+                    openDate:document.getElementById('openDate').value,
+                    address:document.getElementById('address').value,
+                    phoneNumber:document.getElementById('phoneNumber').value,
+                    content:document.getElementById('content').value
+                }),
+                dataType:'json',
+                contentType:'application/json',
+                success:d=>{if(d.message==='SUCCESS'){alert('성공')}
+                            else{alert('실패')}},
+                error:e=>{}
+            })
+        })
+    </script>
+</body>
+</html>
