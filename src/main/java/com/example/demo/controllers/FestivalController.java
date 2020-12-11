@@ -19,8 +19,7 @@ public class FestivalController {
     @PostMapping("/festival")
     public Map<?,?> add(@RequestBody FestivalDTO f){
         var map = new HashMap<>();
-        int result = festivalService.add(f);
-        map.put("message", result==1?"SUCCESS":"FAILURE");
+        map.put("message", festivalService.add(f)==1?"SUCCESS":"FAILURE");
         return map;
     }
     @GetMapping("/festival/crawling/{url}")
@@ -43,5 +42,10 @@ public class FestivalController {
         map.put("list", festivalService.list());
         map.put("count",festivalService.count());
         return map;
+    }
+    @GetMapping("/festival/detail/{fesNum}")
+    public FestivalDTO detail(@PathVariable String fesNum){
+        FestivalDTO f = festivalService.detail(fesNum);
+        return f;
     }
 }

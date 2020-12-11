@@ -42,7 +42,6 @@
                 url:'/festival',
                 type:'POST',
                 data:JSON.stringify({
-                    //jQuery로 수정
                     title:document.getElementById('title').value,
                     openDate:document.getElementById('openDate').value,
                     address:document.getElementById('address').value,
@@ -53,7 +52,7 @@
                 contentType:'application/json',
                 success:d=>{if(d.message==='SUCCESS'){alert('성공')}
                             else{alert('실패')}},
-                error:e=>{}
+                error:e=>{alert('오류 발생')}
             })
         })
         $('#home').click(e=>{location.href='/'})

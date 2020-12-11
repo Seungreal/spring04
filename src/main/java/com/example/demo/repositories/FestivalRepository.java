@@ -14,5 +14,7 @@ public interface FestivalRepository {
 	public int selectCount();
 
 	public List<FestivalDTO> selectAll();
+
+	public FestivalDTO select(String fesNum);
     
 }

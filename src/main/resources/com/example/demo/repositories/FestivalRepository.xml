@@ -18,4 +18,14 @@
                 content
         from festivals
     </select>
+    <select id="select" resultType="com.example.demo.domains.FestivalDTO">
+        select fes_num fesNum,
+                title,
+                open_date openDate,
+                fes_address address,
+                phone_number phoneNumber,
+                content
+        from festivals
+        where fes_num like #{value}
+    </select>
 </mapper>

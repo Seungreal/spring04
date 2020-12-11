@@ -38,5 +38,10 @@ public class FestivalServiceImpl implements FestivalService {
     public List<FestivalDTO> list() {
         return festivalRepository.selectAll();
     }
+
+    @Override
+    public FestivalDTO detail(String fesNum) {
+        return festivalRepository.select(fesNum);
+    }
     
 }

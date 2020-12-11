@@ -16,4 +16,6 @@ public interface FestivalService {
 	public int crawling(String url);
 
 	public List<FestivalDTO> list();
+
+	public FestivalDTO detail(String fesNum);
 }

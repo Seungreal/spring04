@@ -3,9 +3,10 @@ package com.example.demo.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component @Lazy
 public class MyList<T> extends Proxy{
     private List<T> list;
     public MyList(){list=new ArrayList<>();}

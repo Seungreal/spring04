@@ -34,12 +34,19 @@
                 for(;i<d.count;i++){
                     tr+='<tr>'
                         +'<td>'+list[i].fesNum+'</td>'
-                        +'<td>'+list[i].title+'</td>'
+                        +'<td><a class="title" href="#"id="'+list[i].fesNum+'">'+list[i].title+'</a></td>'
                         +'<td>'+list[i].openDate+'</td>'
                         +'<td>'+list[i].phoneNumber+'</td>'
                         +'</tr>'
                 }
                 $('#tb').html(tr)
+                $('.title').each(function(){
+                    $(this).click(e=>{
+                        e.preventDefault()
+                        localStorage.setItem('fesNum',this.id)
+                        location.href=`/forms/festival/detail`
+                    })
+                })
             }
         })
     </script>
