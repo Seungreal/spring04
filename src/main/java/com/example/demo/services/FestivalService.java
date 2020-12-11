@@ -18,4 +18,6 @@ public interface FestivalService {
 	public List<FestivalDTO> list();
 
 	public FestivalDTO detail(String fesNum);
+
+	public int delete(FestivalDTO f);
 }

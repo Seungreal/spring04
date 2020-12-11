@@ -16,5 +16,7 @@ public interface FestivalRepository {
 	public List<FestivalDTO> selectAll();
 
 	public FestivalDTO select(String fesNum);
+
+	public int delete(FestivalDTO f);
     
 }

@@ -43,5 +43,10 @@ public class FestivalServiceImpl implements FestivalService {
     public FestivalDTO detail(String fesNum) {
         return festivalRepository.select(fesNum);
     }
+
+    @Override
+    public int delete(FestivalDTO f) {
+        return festivalRepository.delete(f);
+    }
     
 }
