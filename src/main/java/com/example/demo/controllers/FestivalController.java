@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.example.demo.domains.FestivalDTO;
 import com.example.demo.services.FestivalService;
-import com.example.demo.utils.Crawler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FestivalController {
     @Autowired FestivalService festivalService;
-    @Autowired Crawler crawler;
     @PostMapping("/festival")
     public Map<?,?> add(@RequestBody FestivalDTO f){
         var map = new HashMap<>();
@@ -28,9 +26,22 @@ public class FestivalController {
     @GetMapping("/festival/crawling/{url}")
     public Map<?,?> crawling(@PathVariable String url){
         var map = new HashMap<>();
-        if(url.equals("koreatriptips")){
-            crawler.crawling("http://www.koreatriptips.com/festivals-events-performances.html");
+        int count = festivalService.count();
+        if(count<10){
+            switch(url){
+                case "koreatriptips":
+                count=festivalService.crawling("http://www.koreatriptips.com/festivals-events-performances.html");
+                break;
+            }
         }
+        map.put("count", count);
+        return map;
+    }
+    @GetMapping("/festival")
+    public Map<?,?> list(){
+        var map = new HashMap<>();
+        map.put("list", festivalService.list());
+        map.put("count",festivalService.count());
         return map;
     }
 }

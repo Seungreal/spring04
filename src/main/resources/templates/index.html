@@ -15,7 +15,7 @@
         $('#add').click(e=>{location.href='/forms/festival/add'})
         $('#list').click(e=>{location.href='/forms/festival/list'})
         $('#crawling').click(e=>{
-            $.getJSON('/festival/crawling/koreatriptips',d=>{})
+            $.getJSON('/festival/crawling/koreatriptips',d=>{alert(`등록된 행사정보의 개수: ${d.count}`)})
         })
     </script>
 </body>

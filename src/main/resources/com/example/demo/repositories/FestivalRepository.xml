@@ -6,4 +6,16 @@
         insert into festivals(title,open_date,fes_address,phone_number,content)
         values(#{title},#{openDate},#{address},#{phoneNumber},#{content})
     </insert>
+    <select id="selectCount" resultType="int">
+        select count(*) from festivals
+    </select>
+    <select id="selectAll" resultType="com.example.demo.domains.FestivalDTO">
+        select fes_num fesNum,
+                title,
+                open_date openDate,
+                fes_address address,
+                phone_number phoneNumber,
+                content
+        from festivals
+    </select>
 </mapper>

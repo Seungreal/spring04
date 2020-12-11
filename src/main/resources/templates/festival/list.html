@@ -4,9 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table tr th{border: 1px solid black;}
+        table tr td{border: 1px solid black;}
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>행사 목록</h1>
+    <a href="#" id="home">홈으로</a>
+    <table>
+        <thead>
+            <th style="width:30px">no</th>
+            <th style="width:500px">행사이름</th>
+            <th style="width:100px">시작날짜</th>
+            <th style="width:150px">전화번호</th>
+        </thead>
+        <tbody id="tb">
+
+        </tbody>
+    </table>
+    <script>
+        $('#home').click(e=>{location.href='/'})
+        $.getJSON('/festival',d=>{
+            if(d.count!=0){
+                const list=d.list
+                let tr = ''
+                let i = 0
+                for(;i<d.count;i++){
+                    tr+='<tr>'
+                        +'<td>'+list[i].fesNum+'</td>'
+                        +'<td>'+list[i].title+'</td>'
+                        +'<td>'+list[i].openDate+'</td>'
+                        +'<td>'+list[i].phoneNumber+'</td>'
+                        +'</tr>'
+                }
+                $('#tb').html(tr)
+            }
+        })
+    </script>
 </body>
 </html>

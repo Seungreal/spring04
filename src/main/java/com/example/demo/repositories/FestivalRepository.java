@@ -1,5 +1,7 @@
 package com.example.demo.repositories;
 
+import java.util.List;
+
 import com.example.demo.domains.FestivalDTO;
 
 import org.springframework.stereotype.Repository;
@@ -7,6 +9,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FestivalRepository {
 
-	int insert(FestivalDTO f);
+	public int insert(FestivalDTO f);
+
+	public int selectCount();
+
+	public List<FestivalDTO> selectAll();
     
 }
