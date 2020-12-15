@@ -32,4 +32,9 @@
         delete from festivals
         where fes_num like #{fesNum}
     </delete>
+    <update id="update" parameterType="com.example.demo.domains.FestivalDTO">
+        update festivals
+        set title=#{title},open_date=#{openDate},fes_address=#{address},phone_number=#{phoneNumber},content=#{content}
+        where fes_num like #{fesNum}
+    </update>
 </mapper>

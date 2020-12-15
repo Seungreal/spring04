@@ -26,7 +26,7 @@
             <td colspan="3"width="600px"height="300px"><p id="content">내용</p></td>
         </tr>
     </table>
-    <button id="delete-btn">삭제하기</button>
+    <span id="toggle"></span>
     <script>
         $('#home').click(e=>{location.href="/forms/festival/list"})
         $.getJSON(`/festival/detail/${localStorage.getItem('fesNum')}`,d=>{
@@ -35,28 +35,47 @@
             $('#address').text(d.address)
             $('#phoneNumber').text(d.phoneNumber)
             $('#content').text(d.content)
+            $('#toggle').html('<button id="delete-btn">삭제하기</button>')
             $('#update').click(e=>{
                 $('#home').text('')
                 $('#update').text('')
-                $('#title').html('<input value="'+d.title+'">')
-                $('#openDate').html('<input value="'+d.openDate+'">')
-                $('#address').html('<input value="'+d.address+'">')
-                $('#phoneNumber').html('<input value="'+d.phoneNumber+'">')
-                $('#content').html('<textarea cols="80" rows="10">'+d.content+'</textarea>')
-                $('#delete-btn').text('수정하기')
+                $('#title').html('<input id="update-title"value="'+d.title+'">')
+                $('#openDate').html('<input id="update-openDate"value="'+d.openDate+'">')
+                $('#address').html('<input id="update-address"value="'+d.address+'">')
+                $('#phoneNumber').html('<input id="update-phoneNumber"value="'+d.phoneNumber+'">')
+                $('#content').html('<textarea id="update-content"cols="80" rows="10">'+d.content+'</textarea>')
+                $('#toggle').html('<button id="update-btn">수정하기</button>')
+                $('#update-btn').click(e=>{
+                    $.ajax({
+                        url:'/festival',
+                        type:'PUT',
+                        data:JSON.stringify({
+                            fesNum:d.fesNum,
+                            title:$('#update-title').val(),
+                            openDate:$('#update-openDate').val(),
+                            address:$('#update-address').val(),
+                            phoneNumber:$('#update-phoneNumber').val(),
+                            content:$('#update-content').val()
+                        }),
+                        dataType:'json',
+                        contentType:'application/json',
+                        success:d=>{if(d.message==='SUCCESS'){alert('수정 성공'); location.href='/forms/festival/detail'}},
+                        error:e=>{}
+                    })
+                })
             })
             $('#delete-btn').click(e=>{
-            $.ajax({
-                url:'/festival',
-                type:'DELETE',
-                data:JSON.stringify({fesNum:localStorage.getItem('fesNum')}),
-                dataType:'json',
-                contentType:'application/json',
-                success:d=>{if(d.message==='SUCCESS'){alert('삭제 성공'); location.href='/forms/festival/list'}
-                            else{alert('삭제 실패')}},
-                error:e=>{alert('오류 발생')}
+                $.ajax({
+                    url:'/festival',
+                    type:'DELETE',
+                    data:JSON.stringify({fesNum:localStorage.getItem('fesNum')}),
+                    dataType:'json',
+                    contentType:'application/json',
+                    success:d=>{if(d.message==='SUCCESS'){alert('삭제 성공'); location.href='/forms/festival/list'}
+                                else{alert('삭제 실패')}},
+                    error:e=>{alert('오류 발생')}
+                })
             })
-        })
         })
     </script>
 </body>

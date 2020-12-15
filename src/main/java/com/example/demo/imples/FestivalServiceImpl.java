@@ -48,5 +48,10 @@ public class FestivalServiceImpl implements FestivalService {
     public int delete(FestivalDTO f) {
         return festivalRepository.delete(f);
     }
+
+    @Override
+    public int update(FestivalDTO f) {
+        return festivalRepository.update(f);
+    }
     
 }

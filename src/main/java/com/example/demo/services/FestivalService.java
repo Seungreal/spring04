@@ -20,4 +20,6 @@ public interface FestivalService {
 	public FestivalDTO detail(String fesNum);
 
 	public int delete(FestivalDTO f);
+
+	public int update(FestivalDTO f);
 }

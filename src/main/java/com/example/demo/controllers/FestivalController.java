@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -55,6 +56,13 @@ public class FestivalController {
         var map = px.hashMap();
         int result = festivalService.delete(f);
         map.put("message", result==1?"SUCCESS":"FAILURE");
+        return map;
+    }
+    @PutMapping("/festival")
+    public Map<?,?> update(@RequestBody FestivalDTO f){
+        var map = px.hashMap();
+        int result = festivalService.update(f);
+        map.put("message",result==1?"SUCCESS":"FAILURE");
         return map;
     }
 }
